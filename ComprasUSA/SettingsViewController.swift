@@ -10,6 +10,9 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var dolarVlue: UITextField!
+    @IBOutlet weak var iofTax: UITextField!
+    @IBOutlet weak var stateTax: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -10,6 +10,13 @@ import UIKit
 
 class TaxesViewController: UIViewController {
 
+    @IBOutlet weak var totalSale: UILabel!
+    @IBOutlet weak var stateTax: UILabel!
+    @IBOutlet weak var iofTax: UILabel!
+    @IBOutlet weak var saleWithCreditCard: UISwitch!
+    @IBOutlet weak var totalSaleWIthCharges: UILabel!
+    @IBOutlet weak var taxDescription: UILabel!
+    @IBOutlet weak var iofDescription: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
