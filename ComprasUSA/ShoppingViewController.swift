@@ -23,11 +23,14 @@ class ShoppingViewController: UIViewController {
         txFIeldOrder.resignFirstResponder()
     }
     
-    
     private func setAmount() {
         if let value = txFIeldOrder.text {
-            tc.dolar = Double(value) ?? 0
+            tc.shoppingValue = tc.converStrInDouble(value)
+            money.text = tc.getFormmatedValue(tc.shoppingValueInReal, currency: "")
         }
+        
+        let formmatedDolar = tc.getFormmatedValue(tc.dolar, currency: "US$ ")
+        dolarDesc.text = "Valor sem impostos (\(formmatedDolar))"
     }
 }
 

@@ -16,18 +16,34 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        dolarVlue.text = tc.getFormmatedValue(tc.dolar, currency: "")
+        iofTax.text = tc.getFormmatedValue(tc.iof, currency: "")
+        stateTax.text = tc.getFormmatedValue(tc.stateTax, currency: "")
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
-    */
+    
+    func setValues() {
+        
+        if let dolar = dolarVlue.text {
+            tc.dolar = tc.converStrInDouble(dolar)
+        }
 
+        if let iof = iofTax.text {
+            tc.iof = tc.converStrInDouble(iof)
+        }
+
+        if let stateTax = stateTax.text {
+            tc.stateTax = tc.converStrInDouble(stateTax)
+        }
+    }
+}
+
+extension SettingsViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        setValues()
+    }
 }

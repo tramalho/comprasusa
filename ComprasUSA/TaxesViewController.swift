@@ -17,21 +17,24 @@ class TaxesViewController: UIViewController {
     @IBOutlet weak var totalSaleWIthCharges: UILabel!
     @IBOutlet weak var taxDescription: UILabel!
     @IBOutlet weak var iofDescription: UILabel!
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        calculateTaxes()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func switchIOFAction(_ sender: UISwitch) {
+        calculateTaxes()
     }
-    */
-
+    
+    private func calculateTaxes() {
+        let usaSymbol = "US$ "
+        taxDescription.text = "imposto (\(tc.getFormmatedValue(tc.stateTax, currency: ""))%)"
+        iofDescription.text = "IOF (\(tc.getFormmatedValue(tc.iof, currency: ""))%)"
+        totalSale.text = tc.getFormmatedValue(tc.shoppingValue, currency: usaSymbol)
+        stateTax.text = tc.getFormmatedValue(tc.stateTaxValue, currency: usaSymbol)
+        iofTax.text = tc.getFormmatedValue(tc.iofValue, currency: usaSymbol)
+        let total = tc.calculate(useCreditCard: saleWithCreditCard.isOn)
+        totalSaleWIthCharges.text = tc.getFormmatedValue(total, currency: "R$ ")
+    }
 }
